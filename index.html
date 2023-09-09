@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+  <script src="https://unpkg.com/htmx.org@1.9.5"
+          integrity="sha384-xcuj3WpfgjlKF+FXhSQFQ0ZNr39ln+hwjN3npfM9VBnUskLolQAcN80McRIVOPuO"
+          crossorigin="anonymous"></script>
+  <script type="text/javascript">
+    const dummyFn = () => {
+      console.log('clicked window.dummyFn');
+    }
+
+    window.dummyFn = dummyFn;
+
+  </script>
+</head>
+<body>
+<div>
+  <h1>AJAX requests</h1>
+  <br>
+
+  <div hx-get="https://jsonplaceholder.typicode.com/todos/1">
+    Get Todo (click me)
+  </div>
+
+  <br>
+  <hr>
+  <br>
+
+  <div hx-post="https://jsonplaceholder.typicode.com/todos">
+    Create Todo (click me)
+  </div>
+
+  <br>
+  <hr>
+  <br>
+
+  <div hx-patch="https://jsonplaceholder.typicode.com/todos/1">
+    Edit Patch Todo (click me)
+  </div>
+
+  <br>
+  <hr>
+  <br>
+
+  <div hx-put="https://jsonplaceholder.typicode.com/todos/1">
+    Edit Put Todo (click me)
+  </div>
+
+  <br>
+  <hr>
+  <br>
+
+  <div hx-delete="https://jsonplaceholder.typicode.com/todos/1">
+    Delete Todo (click me)
+  </div>
+
+  <br>
+  <hr>
+  <br>
+
+  <!-- ======================================= -->
+  <h1>Triggering Requests</h1>
+  <br>
+
+  <div
+    hx-get="https://jsonplaceholder.typicode.com/todos/1"
+    hx-trigger="click"
+  >
+    Trigger me (click)
+  </div>
+
+  <br>
+  <hr>
+  <br>
+
+  <div
+    hx-get="https://jsonplaceholder.typicode.com/todos/1"
+    hx-trigger="click[ctrlKey]"
+  >
+    Trigger me (ctrl + click)
+  </div>
+
+  <br>
+  <hr>
+  <br>
+
+  <div
+    hx-get="https://jsonplaceholder.typicode.com/todos/1"
+    hx-trigger="click[window.dummyFn()]"
+  >
+    Trigger me (click and call function, see console)
+  </div>
+
+  <br>
+  <hr>
+  <br>
+
+  <div
+    hx-get="https://jsonplaceholder.typicode.com/todos/1"
+    hx-trigger="click[ctrlKey&&shiftKey]"
+  >
+    Trigger me (ctrl + shift + click)
+  </div>
+
+  <br>
+  <hr>
+  <br>
+
+  <div
+    hx-get="https://jsonplaceholder.typicode.com/todos/1"
+    hx-trigger="click once"
+  >
+    Trigger me (click, run only once)
+  </div>
+
+  <br>
+  <hr>
+  <br>
+
+  <input type="text" name="q"
+         hx-get="https://jsonplaceholder.typicode.com/todos/1"
+         hx-trigger="keyup changed throttle:500ms"
+         hx-target="#search-results">
+
+  <div id="search-results"></div>
+
+
+  <br>
+  <hr>
+  <br>
+</div>
+</body>
+</html>
