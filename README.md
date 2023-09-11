@@ -46,21 +46,64 @@ version htmx.org@1.9.5
 Standard Events =>
   - click (triggered on click)
   - change (triggered on blur)
+  - etc
 
 Standard Event Filters =>
-  - <event>[<event filter>] (triggered when event_filter is true, e.g. click[altKey])
+  - <event>[<event filter>] (triggered when event filter is true, e.g. click[altKey])
 
 Standard Event Modifiers =>
   - once (only trigger once)
-  - changed ❓
+  - changed (trigger only if value has changed)
   - delay:<timing declaration> (triggered after delay, e.g. delay:1s)
   - throttle:<timing declaration> (triggered at most once per timing declaration, e.g. throttle:1s)
 ```
-### ✅ hx-post
+
+### ✅ once
 ```html
-<div hx-post="https://jsonplaceholder.typicode.com/todos">
-  Create Todo (click me)
+<div
+  hx-get="https://jsonplaceholder.typicode.com/todos/1"
+  hx-trigger="click once"
+>
+  Trigger me (click, run only once)
 </div>
+```
+
+### ✅ changed
+```html
+<input
+  type="text"
+  name="q"
+  hx-get="https://jsonplaceholder.typicode.com/todos/1"
+  hx-trigger="keyup changed delay:500ms"
+  hx-target="#search-results"
+/>
+<div id="search-results">result</div>
+<!-- we use changed modifier because we only trigger when value has change, not arrow-up, esc, shift, etc -->
+```
+
+### ✅ delay
+```html
+<input
+  type="text"
+  name="q"
+  hx-get="https://jsonplaceholder.typicode.com/todos/1"
+  hx-trigger="keyup changed delay:500ms"
+  hx-target="#search-results"
+/>
+<div id="search-results">result</div>
+```
+
+### ✅ throttle
+```html
+<input
+  type="text"
+  name="q"
+  hx-get="https://jsonplaceholder.typicode.com/todos/1"
+  hx-trigger="keyup changed throttle:500ms"
+  hx-target="#search-results"
+/>
+<div id="search-results">result</div>
+<!-- throttle input every 500ms  -->
 ```
 
 

@@ -119,12 +119,14 @@
   <hr>
   <br>
 
-  <input type="text" name="q"
-         hx-get="https://jsonplaceholder.typicode.com/todos/1"
-         hx-trigger="keyup changed throttle:500ms"
-         hx-target="#search-results">
-
-  <div id="search-results"></div>
+  <input
+    type="text"
+    name="q"
+    hx-get="https://jsonplaceholder.typicode.com/todos/1"
+    hx-trigger="keyup changed delay:500ms"
+    hx-target="#search-results"
+  />
+  <div id="search-results">result</div>
 
 
   <br>
